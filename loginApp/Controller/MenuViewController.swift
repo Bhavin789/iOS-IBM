@@ -15,6 +15,9 @@ class MenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.title = "SELECT SERVICES"
+        
         items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant"]
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
@@ -45,7 +48,6 @@ class MenuViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = items[indexPath.row]
-        
         return cell
     }
     
@@ -68,6 +70,10 @@ class MenuViewController: UITableViewController {
             viewController.heading = "Tone Analyzer"
             self.navigationController?.pushViewController(viewController, animated: true)
             
+        }else if (items[indexPath.row] == "Watson Assistant"){
+            let viewController = AssistantViewController()
+            viewController.heading = "Car Assistant"
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 

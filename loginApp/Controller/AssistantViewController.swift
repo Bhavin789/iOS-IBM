@@ -15,6 +15,7 @@ import TextToSpeechV1
 
 class AssistantViewController: JSQMessagesViewController {
     
+    var heading: String!
     var messages = [JSQMessage]()
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
@@ -29,6 +30,9 @@ class AssistantViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.title = heading
         setupInterface()
         setupSender()
         setupWatsonServices()
@@ -44,16 +48,16 @@ extension AssistantViewController {
         assistant = Assistant(
             username: Credentials.AssistantUsername,
             password: Credentials.AssistantPassword,
-            version: "2017-05-26"
+            version: Credentials.version
         )
-        speechToText = SpeechToText(
+       /* speechToText = SpeechToText(
             username: Credentials.SpeechToTextUsername,
             password: Credentials.SpeechToTextPassword
         )
         textToSpeech = TextToSpeech(
             username: Credentials.TextToSpeechUsername,
             password: Credentials.TextToSpeechPassword
-        )
+        )*/
     }
     
     /// Present an error message
@@ -84,11 +88,11 @@ extension AssistantViewController {
         context = response.context // save context to continue conversation
         
         // synthesize and speak the response
-        textToSpeech.synthesize(text: text, accept: "audio/wav", failure: failure) { audio in
+        /*textToSpeech.synthesize(text: text, accept: "audio/wav", failure: failure) { audio in
             self.audioPlayer = try? AVAudioPlayer(data: audio)
             self.audioPlayer?.prepareToPlay()
             self.audioPlayer?.play()
-        }
+        }*/
         
         // create message
         let message = JSQMessage(
@@ -105,7 +109,7 @@ extension AssistantViewController {
     }
     
     /// Start transcribing microphone audio
-    @objc func startTranscribing() {
+    /*@objc func startTranscribing() {
         audioPlayer?.stop()
         var settings = RecognitionSettings(contentType: .opus)
         settings.interimResults = true
@@ -118,7 +122,7 @@ extension AssistantViewController {
     /// Stop transcribing microphone audio
     @objc func stopTranscribing() {
         speechToText.stopRecognizeMicrophone()
-    }
+    }*/
 }
 
 // MARK: Configuration
@@ -136,13 +140,13 @@ extension AssistantViewController {
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         // microphone button
-        let microphoneButton = UIButton(type: .custom)
+        /*let microphoneButton = UIButton(type: .custom)
         microphoneButton.setImage(#imageLiteral(resourceName: "microphone-hollow"), for: .normal)
         microphoneButton.setImage(#imageLiteral(resourceName: "microphone"), for: .highlighted)
         microphoneButton.addTarget(self, action: #selector(startTranscribing), for: .touchDown)
         microphoneButton.addTarget(self, action: #selector(stopTranscribing), for: .touchUpInside)
         microphoneButton.addTarget(self, action: #selector(stopTranscribing), for: .touchUpOutside)
-        inputToolbar.contentView.leftBarButtonItem = microphoneButton
+        inputToolbar.contentView.leftBarButtonItem = microphoneButton*/
     }
     
     func setupSender() {
