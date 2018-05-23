@@ -10,6 +10,8 @@
 		2DBFAA2541222D2B54B93E8A /* Pods_loginAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3392DE979D1AF7B4FDA315B4 /* Pods_loginAppUITests.framework */; };
 		F12AA80720B565090008CA69 /* NLPResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA80620B565090008CA69 /* NLPResultsViewController.swift */; };
 		F12AA80B20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA80A20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift */; };
+		F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA80E20B595E60008CA69 /* AssistantViewController.swift */; };
+		F12AA81120B59CC80008CA69 /* AssistantUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA81020B59CC80008CA69 /* AssistantUser.swift */; };
 		F173011720B403CD007EBCF1 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011620B403CD007EBCF1 /* Credentials.swift */; };
 		F173011B20B40973007EBCF1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011A20B40973007EBCF1 /* MenuViewController.swift */; };
 		F173011D20B4109D007EBCF1 /* PersonalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */; };
@@ -108,6 +110,8 @@
 		A2254DBD29E7C7E75C56323C /* Pods-loginAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-loginAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-loginAppUITests/Pods-loginAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F12AA80620B565090008CA69 /* NLPResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPResultsViewController.swift; sourceTree = "<group>"; };
 		F12AA80A20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneAnalyzerResultsTableViewController.swift; sourceTree = "<group>"; };
+		F12AA80E20B595E60008CA69 /* AssistantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantViewController.swift; sourceTree = "<group>"; };
+		F12AA81020B59CC80008CA69 /* AssistantUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantUser.swift; sourceTree = "<group>"; };
 		F173011620B403CD007EBCF1 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F173011A20B40973007EBCF1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 				F173011E20B435C2007EBCF1 /* PersonalityResultsViewController.swift */,
 				F12AA80620B565090008CA69 /* NLPResultsViewController.swift */,
 				F12AA80A20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift */,
+				F12AA80E20B595E60008CA69 /* AssistantViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				F1C180211FE6813F000B4487 /* File.swift */,
+				F12AA81020B59CC80008CA69 /* AssistantUser.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -639,6 +645,8 @@
 				F1C1801C1FE67FD5000B4487 /* DetailViewController.swift in Sources */,
 				F1C1801E1FE67FEE000B4487 /* WelcomeViewController.swift in Sources */,
 				F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */,
+				F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */,
+				F12AA81120B59CC80008CA69 /* AssistantUser.swift in Sources */,
 				F1C17FF01FE6599F000B4487 /* loginApp.xcdatamodeld in Sources */,
 				F173011F20B435C2007EBCF1 /* PersonalityResultsViewController.swift in Sources */,
 			);

@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Credentials {
-    public static let ConversationUsername = "54415107-09a4-407f-9f40-f67af614cbff"
-    public static let ConversationPassword = "6tdxvQjVakYA"
+    public static let AssistantUsername = "54415107-09a4-407f-9f40-f67af614cbff"
+    public static let AssistantPassword = "6tdxvQjVakYA"
     public static let ConversationWorkspace = "SERVICE-WORKSPACE-HERE"
     public static let ToneAnalyzerUsername = "15bafa31-4892-4d79-9d3d-f0a776d15ca7"
     public static let ToneAnalyzerPassword = "8jIHrawINrAT"
