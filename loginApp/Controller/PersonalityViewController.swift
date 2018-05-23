@@ -10,6 +10,7 @@ import UIKit
 import PersonalityInsightsV3
 import SwiftyJSON
 import NaturalLanguageUnderstandingV1
+import ToneAnalyzerV3
 
 class PersonalityViewController: UIViewController, UITextViewDelegate {
     
@@ -104,18 +105,21 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
             viewController.oppenness_to_changePercentile = 3.0
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        }else{
+        }else if (heading == "Language Understanding"){
             let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: Credentials.NLPUsername, password: Credentials.NLPPassword, version: Credentials.version)
+            let feature = Features(concepts: ConceptsOptions(limit: 5),sentiment: SentimentOptions(document: true, targets: nil))
             
-            let features = Features(concepts: ConceptsOptions(limit: 5))
-            let parameters = Parameters(features: features, text: textView.text)
+            let parameters = Parameters(features: feature, text: textView.text)
             
             let failure = {(error: Error) in print(error)}
             naturalLanguageUnderstanding.analyze(parameters: parameters, failure: failure, success: { (results) in
                 print(results)
                 DispatchQueue.main.async {
                     let viewController = NLPResultsViewController()
+                    print(results.sentiment?.document?.label!)
                     if let sentimentLabel = results.sentiment?.document?.label{
+                        print("++++++++++++")
+                        print(sentimentLabel)
                         viewController.emotion = sentimentLabel
                     }else{
                         viewController.emotion = "SAD"
@@ -124,6 +128,15 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
                 }
             })
             
+        } else{
+            let toneAnalyzer = ToneAnalyzer(username: Credentials.ToneAnalyzerUsername, password: Credentials.ToneAnalyzerPassword, version: Credentials.version)
+            
+            let toneInput = ToneInput(text: textView.text)
+            let failure = {(error: Error) in print(error)}
+            
+            toneAnalyzer.tone(toneInput: toneInput, success: { (tones) in
+                print(tones)
+            })
         }
     }
     

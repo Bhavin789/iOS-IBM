@@ -14,7 +14,7 @@ class NLPResultsViewController: UIViewController {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "YOUR TEXT HAS EMOTION"
+        label.text = "YOUR TEXT HAS SENTIMENT"
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +52,7 @@ class NLPResultsViewController: UIViewController {
         emotionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         emotionLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
+        emotionLabel.text = emotion
         // Do any additional setup after loading the view.
     }
 

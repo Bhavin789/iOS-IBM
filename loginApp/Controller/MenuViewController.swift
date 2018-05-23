@@ -62,6 +62,12 @@ class MenuViewController: UITableViewController {
             viewController.heading = "Language Understanding"
             self.navigationController?.pushViewController(viewController, animated: true)
             
+        }else if (items[indexPath.row] == "Tone Analyzer"){
+            
+            let viewController = PersonalityViewController()
+            viewController.heading = "Tone Analyzer"
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         }
     }
 
