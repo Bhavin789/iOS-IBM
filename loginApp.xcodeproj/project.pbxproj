@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DBFAA2541222D2B54B93E8A /* Pods_loginAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3392DE979D1AF7B4FDA315B4 /* Pods_loginAppUITests.framework */; };
+		F12AA80720B565090008CA69 /* NLPResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA80620B565090008CA69 /* NLPResultsViewController.swift */; };
 		F173011720B403CD007EBCF1 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011620B403CD007EBCF1 /* Credentials.swift */; };
 		F173011B20B40973007EBCF1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011A20B40973007EBCF1 /* MenuViewController.swift */; };
 		F173011D20B4109D007EBCF1 /* PersonalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */; };
@@ -104,6 +105,7 @@
 		92A3E2371C8B12A662E6DD47 /* Pods-loginApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-loginApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-loginApp/Pods-loginApp.release.xcconfig"; sourceTree = "<group>"; };
 		A1B073A8A7F6F59F94CC88D6 /* Pods_loginAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_loginAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2254DBD29E7C7E75C56323C /* Pods-loginAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-loginAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-loginAppUITests/Pods-loginAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F12AA80620B565090008CA69 /* NLPResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPResultsViewController.swift; sourceTree = "<group>"; };
 		F173011620B403CD007EBCF1 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F173011A20B40973007EBCF1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				F173011A20B40973007EBCF1 /* MenuViewController.swift */,
 				F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */,
 				F173011E20B435C2007EBCF1 /* PersonalityResultsViewController.swift */,
+				F12AA80620B565090008CA69 /* NLPResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12AA80720B565090008CA69 /* NLPResultsViewController.swift in Sources */,
 				F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */,
 				F1C1801A1FE66194000B4487 /* test.m in Sources */,
 				F173011720B403CD007EBCF1 /* Credentials.swift in Sources */,

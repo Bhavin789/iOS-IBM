@@ -9,6 +9,7 @@
 import UIKit
 import PersonalityInsightsV3
 import SwiftyJSON
+import NaturalLanguageUnderstandingV1
 
 class PersonalityViewController: UIViewController, UITextViewDelegate {
     
@@ -27,7 +28,8 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
     
     let analyzeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        //button.backgroundColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        button.backgroundColor = UIColor.black
         button.setTitle("Analyze", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +73,8 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
     @objc func handleAnalyze(){
         print("analyze")
         
+        
+        
         let words = textView.text.components(separatedBy: .whitespacesAndNewlines)
         let filteredWords = words.filter({ (word) -> Bool in
             word != ""
@@ -79,6 +83,7 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
         
         print(wordCount)
         
+        if(heading == "Personality Insights"){
         if(wordCount > 100){
             let personalityInsights = PersonalityInsights(username: Credentials.PersonalityUsername, password: Credentials.PersonalityPassword, version: Credentials.version)
             
@@ -98,6 +103,27 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
             viewController.curiosityPercentile = 2.0
             viewController.oppenness_to_changePercentile = 3.0
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        }else{
+            let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: Credentials.NLPUsername, password: Credentials.NLPPassword, version: Credentials.version)
+            
+            let features = Features(concepts: ConceptsOptions(limit: 5))
+            let parameters = Parameters(features: features, text: textView.text)
+            
+            let failure = {(error: Error) in print(error)}
+            naturalLanguageUnderstanding.analyze(parameters: parameters, failure: failure, success: { (results) in
+                print(results)
+                DispatchQueue.main.async {
+                    let viewController = NLPResultsViewController()
+                    if let sentimentLabel = results.sentiment?.document?.label{
+                        viewController.emotion = sentimentLabel
+                    }else{
+                        viewController.emotion = "SAD"
+                    }
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            })
+            
         }
     }
     

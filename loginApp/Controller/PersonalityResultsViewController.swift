@@ -21,14 +21,14 @@ class PersonalityResultsViewController: UIViewController {
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        label.textColor = UIColor.black
         return label
     }()
     
     let nameSeparator: UIView = {
         
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+        separatorView.backgroundColor = UIColor.black
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         return separatorView
     }()
@@ -47,14 +47,14 @@ class PersonalityResultsViewController: UIViewController {
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        label.textColor = UIColor.black
         return label
     }()
     
     let needsSeparator: UIView = {
         
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+        separatorView.backgroundColor = UIColor.black
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         return separatorView
     }()
@@ -73,14 +73,14 @@ class PersonalityResultsViewController: UIViewController {
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        label.textColor = UIColor.black
         return label
     }()
     
     let valuesSeparator: UIView = {
         
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+        separatorView.backgroundColor = UIColor.black
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         return separatorView
     }()
@@ -98,7 +98,7 @@ class PersonalityResultsViewController: UIViewController {
         button.setTitle("OK", for: .normal)
         button.setImage(nil, for: .normal)
         //button.contentHorizontalAlignment = .left
-        button.backgroundColor = UIColor(red: 255/255, green: 102/255, blue: 102/255, alpha: 1)
+        button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .thin)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -127,9 +127,9 @@ class PersonalityResultsViewController: UIViewController {
         nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 20).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        nameSeparator.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        nameSeparator.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0).isActive = true
         nameSeparator.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         nameSeparator.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         nameSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -139,12 +139,12 @@ class PersonalityResultsViewController: UIViewController {
         namePerLabel.topAnchor.constraint(equalTo: nameSeparator.bottomAnchor, constant: 8).isActive = true
         namePerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        needsLabel.topAnchor.constraint(equalTo: namePerLabel.bottomAnchor, constant: 8).isActive = true
+        needsLabel.topAnchor.constraint(equalTo: namePerLabel.bottomAnchor, constant: 10).isActive = true
         needsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         needsLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 20).isActive = true
-        needsLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        needsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        needsSeparator.topAnchor.constraint(equalTo: needsLabel.bottomAnchor, constant: 5).isActive = true
+        needsSeparator.topAnchor.constraint(equalTo: needsLabel.bottomAnchor, constant: 3).isActive = true
         needsSeparator.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         needsSeparator.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         needsSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -154,10 +154,10 @@ class PersonalityResultsViewController: UIViewController {
         needsPerLabel.topAnchor.constraint(equalTo: needsSeparator.bottomAnchor, constant: 8).isActive = true
         needsPerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        valuesLabel.topAnchor.constraint(equalTo: needsPerLabel.bottomAnchor, constant: 8).isActive = true
+        valuesLabel.topAnchor.constraint(equalTo: needsPerLabel.bottomAnchor, constant: 10).isActive = true
         valuesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         valuesLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 20).isActive = true
-        valuesLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        valuesLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         valuesSeparator.topAnchor.constraint(equalTo: valuesLabel.bottomAnchor, constant: 5).isActive = true
         valuesSeparator.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
@@ -169,10 +169,10 @@ class PersonalityResultsViewController: UIViewController {
         valuesPerLabel.topAnchor.constraint(equalTo: valuesSeparator.bottomAnchor, constant: 8).isActive = true
         valuesPerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        okButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        okButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        okButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        okButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        okButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        okButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        okButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 8).isActive = true
+        okButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
         
         namePerLabel.text = "Emotional = \(emotionalPercentile!)"
         needsPerLabel.text = "Curiosity = \(curiosityPercentile!)"

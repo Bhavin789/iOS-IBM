@@ -51,10 +51,17 @@ class MenuViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(items[indexPath.row] == "Personality Insights"){
+            
             let viewController = PersonalityViewController()
             viewController.heading = "Personality Insights"
-            
             self.navigationController?.pushViewController(viewController, animated: true)
+            
+        }else if (items[indexPath.row] == "Natural Language Understanding"){
+            
+            let viewController = PersonalityViewController()
+            viewController.heading = "Language Understanding"
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         }
     }
 
