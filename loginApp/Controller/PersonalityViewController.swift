@@ -135,7 +135,14 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
             let failure = {(error: Error) in print(error)}
             
             toneAnalyzer.tone(toneInput: toneInput, success: { (tones) in
+                
                 print(tones)
+                
+                DispatchQueue.main.async {
+                    let viewController = ToneAnalyzerResultsTableViewController()
+                    viewController.tones = tones.documentTone.tones!
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
             })
         }
     }
