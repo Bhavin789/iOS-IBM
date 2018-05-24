@@ -20,5 +20,7 @@ public struct Credentials {
     public static let PersonalityPassword = "jkeqXyATKmoQ"
     public static let DiscoveryUsername = "ca4549fc-d977-4c6d-8429-39ef0c599f69"
     public static let DiscoveryPassword = "UFd8vIj5dT3D"
-    public static let version = "2018-05-23"
+    public static let TranslatorUsername = "1c926e0b-9fcd-4d3f-b0c0-da81328fe74b"
+    public static let TranslatorPassword = "nOA6fbXKLjCO"
+    public static let version = "2018-05-25"
 }
