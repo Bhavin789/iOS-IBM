@@ -9,9 +9,23 @@
 import UIKit
 import LanguageTranslatorV2
 
-class TranslatorInputViewController: UIViewController {
+class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate {
     
     var heading: String!
+    var languageArray = [[String: String]]()
+    let categoryPicker = UIPickerView()
+    
+    let language1 = ["name" : "Vietnamese", "sub": "vi"]
+    let language2 = ["name" : "Urdu", "sub": "ur"]
+    let language3 = ["name" : "Turkish", "sub": "tr"]
+    let language4 = ["name" : "Telugu", "sub": "te"]
+    let language5 = ["name" : "Spanish", "sub": "es"]
+    let language6 = ["name" : "Russian", "sub": "ru"]
+    let language7 = ["name" : "Portuguese", "sub": "pt"]
+    let language8 = ["name" : "Panjabi", "sub": "pa"]
+    let language9 = ["name" : "Japanese", "sub": "ja"]
+    let language10 = ["name" : "Hindi", "sub": "hi"]
+    let language11 = ["name" : "English", "sub": "en"]
     
     var textView: UITextView = {
         let view = UITextView()
@@ -21,6 +35,15 @@ class TranslatorInputViewController: UIViewController {
         view.layer.borderColor = borderColor.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    let languageField: UITextField = {
+        let txtField = UITextField()
+        
+        txtField.placeholder = "Select Target Language"
+        txtField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return txtField
     }()
     
     let analyzeButton: UIButton = {
@@ -50,10 +73,12 @@ class TranslatorInputViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
+        var languageArray = [language1, language2, language3, language4, language5, language6, language7, language8, language9, language10, language11]
         
         view.addSubview(textView)
         view.addSubview(analyzeButton)
         view.addSubview(nameLabel)
+        view.addSubview(languageField)
         
         nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
@@ -62,16 +87,67 @@ class TranslatorInputViewController: UIViewController {
         
         textView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
         textView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
-        textView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        textView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         textView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        languageField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
+        languageField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
+        languageField.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 8).isActive = true
+        languageField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         analyzeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
         analyzeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
-        analyzeButton.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 20).isActive = true
+        analyzeButton.topAnchor.constraint(equalTo: languageField.bottomAnchor, constant: 20).isActive = true
         analyzeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        languageField.delegate = self
+        createCategoryPicker()
+        
 
+        
         // Do any additional setup after loading the view.
     }
+    
+    @objc func handleAnalyze(){
+        
+    }
+    
+    func createCategoryPicker(){
+        // let categoryPicker = UIPickerView()
+        categoryPicker.delegate = self
+        languageField.inputView = categoryPicker
+    }
+    
+    func createToolbar(){
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        toolbar.setItems([cancelButton, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.tintColor = UIColor.black
+        languageField.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard(){
+        print("called")
+        view.endEditing(true)
+        // print(currentTextField)
+        languageField.resignFirstResponder()
+    }
+    
+    @objc func handleCancel(){
+        view.endEditing(true)
+        languageField.text = ""
+        categoryPicker.removeFromSuperview()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        languageField.text = ""
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

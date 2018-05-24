@@ -13,6 +13,7 @@
 		F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA80E20B595E60008CA69 /* AssistantViewController.swift */; };
 		F12AA81120B59CC80008CA69 /* AssistantUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AA81020B59CC80008CA69 /* AssistantUser.swift */; };
 		F1428CA620B746F2002AC68A /* TranslatorInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428CA520B746F2002AC68A /* TranslatorInputViewController.swift */; };
+		F1428CA820B749A5002AC68A /* TranslatorResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428CA720B749A5002AC68A /* TranslatorResultsViewController.swift */; };
 		F173011720B403CD007EBCF1 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011620B403CD007EBCF1 /* Credentials.swift */; };
 		F173011B20B40973007EBCF1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011A20B40973007EBCF1 /* MenuViewController.swift */; };
 		F173011D20B4109D007EBCF1 /* PersonalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */; };
@@ -114,6 +115,7 @@
 		F12AA80E20B595E60008CA69 /* AssistantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantViewController.swift; sourceTree = "<group>"; };
 		F12AA81020B59CC80008CA69 /* AssistantUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantUser.swift; sourceTree = "<group>"; };
 		F1428CA520B746F2002AC68A /* TranslatorInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorInputViewController.swift; sourceTree = "<group>"; };
+		F1428CA720B749A5002AC68A /* TranslatorResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorResultsViewController.swift; sourceTree = "<group>"; };
 		F173011620B403CD007EBCF1 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F173011A20B40973007EBCF1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F173011C20B4109D007EBCF1 /* PersonalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				F12AA80A20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift */,
 				F12AA80E20B595E60008CA69 /* AssistantViewController.swift */,
 				F1428CA520B746F2002AC68A /* TranslatorInputViewController.swift */,
+				F1428CA720B749A5002AC68A /* TranslatorResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				F1C1801C1FE67FD5000B4487 /* DetailViewController.swift in Sources */,
 				F1C1801E1FE67FEE000B4487 /* WelcomeViewController.swift in Sources */,
 				F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */,
+				F1428CA820B749A5002AC68A /* TranslatorResultsViewController.swift in Sources */,
 				F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */,
 				F12AA81120B59CC80008CA69 /* AssistantUser.swift in Sources */,
 				F1C17FF01FE6599F000B4487 /* loginApp.xcdatamodeld in Sources */,
