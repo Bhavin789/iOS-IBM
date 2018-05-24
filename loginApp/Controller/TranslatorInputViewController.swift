@@ -9,23 +9,21 @@
 import UIKit
 import LanguageTranslatorV2
 
-class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate {
+class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var heading: String!
     var languageArray = [[String: String]]()
     let categoryPicker = UIPickerView()
+    var sub: String!
+    var modelID: String!
     
-    let language1 = ["name" : "Vietnamese", "sub": "vi"]
-    let language2 = ["name" : "Urdu", "sub": "ur"]
-    let language3 = ["name" : "Turkish", "sub": "tr"]
-    let language4 = ["name" : "Telugu", "sub": "te"]
-    let language5 = ["name" : "Spanish", "sub": "es"]
-    let language6 = ["name" : "Russian", "sub": "ru"]
-    let language7 = ["name" : "Portuguese", "sub": "pt"]
-    let language8 = ["name" : "Panjabi", "sub": "pa"]
-    let language9 = ["name" : "Japanese", "sub": "ja"]
-    let language10 = ["name" : "Hindi", "sub": "hi"]
-    let language11 = ["name" : "English", "sub": "en"]
+    let language1 = ["name" : "Arabic", "sub": "ar", "modelID": "en-ar"]
+    let language2 = ["name" : "German", "sub": "de", "modelID": "en-de"]
+    let language3 = ["name" : "Italian", "sub": "it", "modelID": "en-it"]
+    let language4 = ["name" : "Spanish", "sub": "es", "modelID": "en-es"]
+    let language5 = ["name" : "Portuguese", "sub": "pt", "modelID": "en-pt"]
+    let language6 = ["name" : "French", "sub": "fr", "modelID": "en-fr"]
+    let language7 = ["name" : "Japanese", "sub": "ja", "modelID": "en-ja"]
     
     var textView: UITextView = {
         let view = UITextView()
@@ -71,9 +69,11 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        sub = ""
+        modelID = ""
         self.view.backgroundColor = .white
-        var languageArray = [language1, language2, language3, language4, language5, language6, language7, language8, language9, language10, language11]
+        self.navigationItem.title = heading
+        languageArray = [language1, language2, language3, language4, language5, language6, language7]
         
         view.addSubview(textView)
         view.addSubview(analyzeButton)
@@ -83,7 +83,7 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
         nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         
         textView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
         textView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
@@ -102,13 +102,37 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
         
         languageField.delegate = self
         createCategoryPicker()
-        
+        createToolbar()
 
         
         // Do any additional setup after loading the view.
     }
     
     @objc func handleAnalyze(){
+        
+        print("translate")
+        if(languageField.text?.count == 0){
+            showAlertMessage("Enter some text to translate")
+        }else{
+            let languageTranslator = LanguageTranslator(username: Credentials.TranslatorUsername, password: Credentials.TranslatorPassword)
+            
+            // set the serviceURL property to use the legacy Language Translation service
+            // languageTranslator.serviceURL = "https://gateway.watsonplatform.net/language-translation/api"
+            
+            let failure = { (error: Error) in print(error) }
+            
+            let req = TranslateRequest(text: [languageField.text!], modelID: modelID, source: "en", target: sub)
+            languageTranslator.translate(request: req, failure: failure) {
+                translation in
+                let text = translation.translations[0].translationOutput
+                
+                DispatchQueue.main.async {
+                    var viewController = TranslatorResultsViewController()
+                    viewController.text = text
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
+        }
         
     }
     
@@ -147,7 +171,40 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
         languageField.text = ""
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        print("resigned")
+        return true
+        
+    }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        languageField.text = languageArray[row]["name"]
+        sub = languageArray[row]["sub"]
+        modelID = languageArray[row]["modelID"]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return languageArray[row]["name"]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return languageArray.count
+    }
+    
+    func showAlertMessage(_ string:String){
+        let alert = UIAlertController(title: "OpenTrip", message: string, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

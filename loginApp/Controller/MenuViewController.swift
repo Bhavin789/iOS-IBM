@@ -18,7 +18,7 @@ class MenuViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationItem.title = "SELECT SERVICES"
         
-        items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant"]
+        items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant", "Language Translator"]
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         // Uncomment the following line to preserve selection between presentations
@@ -73,6 +73,10 @@ class MenuViewController: UITableViewController {
         }else if (items[indexPath.row] == "Watson Assistant"){
             let viewController = AssistantViewController()
             viewController.heading = "Car Assistant"
+            self.navigationController?.pushViewController(viewController, animated: true)
+        } else if (items[indexPath.row] == "Language Translator"){
+            let viewController = TranslatorInputViewController()
+            viewController.heading = "Language Translator"
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
