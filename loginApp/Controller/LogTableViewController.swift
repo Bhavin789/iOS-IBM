@@ -1,32 +1,17 @@
 //
-//  ToneAnalyzerResultsTableViewController.swift
+//  LogTableViewController.swift
 //  loginApp
 //
-//  Created by Bhavin on 23/05/18.
+//  Created by Bhavin on 26/05/18.
 //  Copyright © 2018 Bhavin. All rights reserved.
 //
 
 import UIKit
-import ToneAnalyzerV3
 
-class ToneAnalyzerResultsTableViewController: UITableViewController {
-    
-    private let cellId = "cellId"
-    
-    var alert: UIAlertController!
-    
-    var tones: [ToneScore]!
+class LogTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        self.navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.title = "Tones Analyzed"
-        self.tableView.separatorStyle = .none
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleClose))
-        self.navigationItem.leftBarButtonItem?.tintColor = .black
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,67 +29,12 @@ class ToneAnalyzerResultsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tones.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = tones[indexPath.row].toneName
-        return cell
-    }
-    
-    @objc func handleClose(){
-        //self.dismiss(animated: true, completion: nil)
-        showAlert("Any Feedback for the response")
-        
-    }
-    
-    func textFieldHandler(textField: UITextField!) -> Void{
-        if (textField) != nil {
-            textField.placeholder = "Enter feedback here"
-        }
-    }
-    
-    func showAlert(_ msg: String){
-        alert = UIAlertController(title: "Tone Analyzer", message: msg, preferredStyle: .alert)
-        alert.addTextField(configurationHandler: textFieldHandler)
-        alert.addAction(UIAlertAction(title: "SUBMIT", style: .default, handler: handleFeedback))
-        alert.addAction(UIAlertAction(title: "NO FEEDBACK", style: .default, handler: { (action) in
-            
-            /*
-             let date = NSDate()
-             var dateFormatter = DateFormatter()
-             dateFormatter.dateFormat = "dd/MM/yyyy"
-             var dateString = dateFormatter.string(from: date as Date)
-             */
-            let date = Date()
-            Log.saveObject(title: "Tone Analyzer", feedback: "", keywords: "\(self.tones[0].toneName)", time: date)
-            
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
-            }
-            
-        }))
-        
-    
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    @objc func handleFeedback(action: UIAlertAction){
-        
-        let date = Date()
-        Log.saveObject(title: "Tone Analyzer", feedback: alert.textFields![0].text!, keywords: "\(tones[0].toneName)", time: date)
-        
-        DispatchQueue.main.async {
-            self.navigationController?.popViewController(animated: true)
-        }
-        
+        return 0
     }
 
     /*

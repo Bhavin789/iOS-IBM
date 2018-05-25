@@ -18,18 +18,6 @@ class PersonalityResultsViewController: UIViewController {
     var textField: UITextField!
     var alert: UIAlertController!
     
-    let closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("CLOSE", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
-        return button
-    }()
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "PERSONALITY"
@@ -108,19 +96,6 @@ class PersonalityResultsViewController: UIViewController {
         return label
     }()
     
-    let okButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("OK", for: .normal)
-        button.setImage(nil, for: .normal)
-        //button.contentHorizontalAlignment = .left
-        button.backgroundColor = UIColor.black
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .thin)
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,9 +111,9 @@ class PersonalityResultsViewController: UIViewController {
         view.addSubview(valuesSeparator)
         view.addSubview(valuesPerLabel)
         //view.addSubview(okButton)
-        view.addSubview(closeButton)
         
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleClose))
+        self.navigationItem.leftBarButtonItem?.tintColor = .black
         
         nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -185,16 +160,9 @@ class PersonalityResultsViewController: UIViewController {
         valuesPerLabel.topAnchor.constraint(equalTo: valuesSeparator.bottomAnchor, constant: 8).isActive = true
         valuesPerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        closeButton.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
-        closeButton.topAnchor.constraint(equalTo: myView.topAnchor, constant: 8).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        
         namePerLabel.text = "Emotional = \(emotionalPercentile!)"
         needsPerLabel.text = "Curiosity = \(curiosityPercentile!)"
         valuesPerLabel.text = "Openness to Change = \(oppenness_to_changePercentile!)"
-        
-        
         
         // Do any additional setup after loading the view.
     }
@@ -223,19 +191,26 @@ class PersonalityResultsViewController: UIViewController {
             dateFormatter.dateFormat = "dd/MM/yyyy"
             var dateString = dateFormatter.string(from: date as Date)
             */
+            let date = Date()
+            Log.saveObject(title: "Personality Insights", feedback: "", keywords: "emotional curiosity change", time: date)
             
-            Log.saveObject(title: "Personality Insights", feedback: "", keywords: "emotional curiosity change", time: <#T##Date#>)
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
             
-            
-            
-            self.navigationController?.popViewController(animated: true)
         }))
         
         self.present(alert, animated: true, completion: nil)
     }
     
     @objc func handleFeedback(action: UIAlertAction){
-        Log.saveObject(title: "Personality Insights", feedback: alert.textFields![0].text, keywords: "emotional curiosity change", time: <#T##Date#>)
+        
+        let date = Date()
+        Log.saveObject(title: "Personality Insights", feedback: alert.textFields![0].text!, keywords: "emotional curiosity change", time: date)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -132,6 +132,7 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
                 DispatchQueue.main.async {
                     var viewController = TranslatorResultsViewController()
                     viewController.text = text
+                    viewController.language = self.languageField.text!
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }
@@ -200,7 +201,7 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
     }
     
     func showAlertMessage(_ string:String){
-        let alert = UIAlertController(title: "OpenTrip", message: string, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Watson", message: string, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

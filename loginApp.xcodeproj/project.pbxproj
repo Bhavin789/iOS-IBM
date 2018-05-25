@@ -44,6 +44,8 @@
 		F18E0A6120B2066B003787E2 /* VisualRecognitionV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4620B205F6003787E2 /* VisualRecognitionV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1A1400820B7EB3B0028A3D0 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */; };
 		F1A1400A20B884300028A3D0 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400920B8842F0028A3D0 /* Log.swift */; };
+		F1A1400C20B896810028A3D0 /* LogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400B20B896800028A3D0 /* LogTableViewController.swift */; };
+		F1A1400F20B896B30028A3D0 /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400E20B896B30028A3D0 /* LogTableViewCell.swift */; };
 		F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE71FE6599F000B4487 /* AppDelegate.swift */; };
 		F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE91FE6599F000B4487 /* ViewController.swift */; };
 		F1C17FED1FE6599F000B4487 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C17FEB1FE6599F000B4487 /* Main.storyboard */; };
@@ -136,6 +138,8 @@
 		F18E0A4820B205F6003787E2 /* NaturalLanguageUnderstandingV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguageUnderstandingV1.framework; path = Carthage/Build/iOS/NaturalLanguageUnderstandingV1.framework; sourceTree = SOURCE_ROOT; };
 		F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		F1A1400920B8842F0028A3D0 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		F1A1400B20B896800028A3D0 /* LogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewController.swift; sourceTree = "<group>"; };
+		F1A1400E20B896B30028A3D0 /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
 		F1C17FE41FE6599F000B4487 /* loginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C17FE71FE6599F000B4487 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C17FE91FE6599F000B4487 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,14 @@
 			path = frameworks;
 			sourceTree = "<group>";
 		};
+		F1A1400D20B8968C0028A3D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1A1400E20B896B30028A3D0 /* LogTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F1C17FDB1FE6599F000B4487 = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +277,7 @@
 		F1C17FE61FE6599F000B4487 /* loginApp */ = {
 			isa = PBXGroup;
 			children = (
+				F1A1400D20B8968C0028A3D0 /* View */,
 				F1C180201FE68125000B4487 /* model */,
 				F1C1801F1FE67FF6000B4487 /* Controller */,
 				F1C17FE71FE6599F000B4487 /* AppDelegate.swift */,
@@ -313,6 +326,7 @@
 				F1428CA520B746F2002AC68A /* TranslatorInputViewController.swift */,
 				F1428CA720B749A5002AC68A /* TranslatorResultsViewController.swift */,
 				F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */,
+				F1A1400B20B896800028A3D0 /* LogTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -646,6 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A1400F20B896B30028A3D0 /* LogTableViewCell.swift in Sources */,
 				F12AA80720B565090008CA69 /* NLPResultsViewController.swift in Sources */,
 				F1A1400820B7EB3B0028A3D0 /* DashboardViewController.swift in Sources */,
 				F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */,
@@ -658,6 +673,7 @@
 				F1C1801C1FE67FD5000B4487 /* DetailViewController.swift in Sources */,
 				F1C1801E1FE67FEE000B4487 /* WelcomeViewController.swift in Sources */,
 				F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */,
+				F1A1400C20B896810028A3D0 /* LogTableViewController.swift in Sources */,
 				F1428CA820B749A5002AC68A /* TranslatorResultsViewController.swift in Sources */,
 				F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */,
 				F1A1400A20B884300028A3D0 /* Log.swift in Sources */,

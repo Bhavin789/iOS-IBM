@@ -16,7 +16,7 @@ class MenuViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.title = "SELECT SERVICES"
+        self.navigationItem.title = "SERVICES"
         
         items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant", "Language Translator"]
         

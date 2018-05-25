@@ -11,6 +11,9 @@ import UIKit
 class TranslatorResultsViewController: UIViewController {
     
     var text: String!
+    var language: String!
+    
+    var alert: UIAlertController!
     
     let nameLabel: UILabel = {
         var label = UILabel()
@@ -27,6 +30,11 @@ class TranslatorResultsViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleClose))
+        self.navigationItem.leftBarButtonItem?.tintColor = .black
+        
+        
         view.addSubview(nameLabel)
         
         self.navigationItem.title = "TRANSLATED TEXT"
@@ -39,6 +47,54 @@ class TranslatorResultsViewController: UIViewController {
         nameLabel.text = text
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func handleClose(){
+        //self.dismiss(animated: true, completion: nil)
+        showAlert("Any Feedback for the response")
+        
+    }
+    
+    func textFieldHandler(textField: UITextField!) -> Void{
+        if (textField) != nil {
+            textField.placeholder = "Enter feedback here"
+        }
+    }
+    
+    func showAlert(_ msg: String){
+        alert = UIAlertController(title: "Translator", message: msg, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: textFieldHandler)
+        alert.addAction(UIAlertAction(title: "SUBMIT", style: .default, handler: handleFeedback))
+        alert.addAction(UIAlertAction(title: "NO FEEDBACK", style: .default, handler: { (action) in
+            
+            /*
+             let date = NSDate()
+             var dateFormatter = DateFormatter()
+             dateFormatter.dateFormat = "dd/MM/yyyy"
+             var dateString = dateFormatter.string(from: date as Date)
+             */
+            let date = Date()
+            Log.saveObject(title: "Language Translator", feedback: "", keywords: "\(self.language)", time: date)
+            
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func handleFeedback(action: UIAlertAction){
+        
+        let date = Date()
+        Log.saveObject(title: "Language Translator", feedback: alert.textFields![0].text!, keywords: "\(language)", time: date)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
