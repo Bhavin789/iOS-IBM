@@ -15,7 +15,7 @@ import ToneAnalyzerV3
 class PersonalityViewController: UIViewController, UITextViewDelegate {
     
     var heading: String!
-    
+    var alert: UIAlertController!
     
     var textView: UITextView = {
         let view = UITextView()
@@ -85,7 +85,7 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
         print(wordCount)
         
         if(heading == "Personality Insights"){
-        if(wordCount > 100){
+        if(wordCount > 1000){
             let personalityInsights = PersonalityInsights(username: Credentials.PersonalityUsername, password: Credentials.PersonalityPassword, version: Credentials.version)
             
             let failure = { (error: Error) in print(error) }
@@ -106,7 +106,7 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }else{
-            showAlertMessage("Enter Atleast 100 words to analyze")
+            showAlertMessage("Enter Atleast 1000 words to analyze")
         }
         }else if (heading == "Language Understanding"){
             let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: Credentials.NLPUsername, password: Credentials.NLPPassword, version: Credentials.version)
@@ -168,9 +168,34 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
     }
     
     func showAlertMessage(_ string:String){
-        let alert = UIAlertController(title: "OpenTrip", message: string, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Watson Services", message: string, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func textFieldHandler(textField: UITextField!) -> Void{
+        if (textField) != nil {
+            textField.placeholder = "Enter feedback here"
+        }
+    }
+    
+    func showAlert(_ msg: String){
+        alert = UIAlertController(title: "Personality", message: msg, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: textFieldHandler)
+        alert.addAction(UIAlertAction(title: "SUBMIT", style: .default, handler: handleFeedback))
+        alert.addAction(UIAlertAction(title: "NO FEEDBACK", style: .default, handler: { (action) in
+            print(self.alert.textFields![0].text)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func handleFeedback(action: UIAlertAction){
+        print("f")
+    }
+    
+    @objc func handleCancel(action: UIAlertAction){
+        self.navigationController?.popViewController(animated: true)
     }
     
     

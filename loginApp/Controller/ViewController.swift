@@ -64,7 +64,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             self.present(viewController!, animated: true, completion: nil)*/
             
             DispatchQueue.main.async {
-                let viewController = DashboardViewController()
+                let viewController = MenuViewController()
                 let navigationController = UINavigationController(rootViewController: viewController)
                 self.present(navigationController, animated: true, completion: nil)
             }

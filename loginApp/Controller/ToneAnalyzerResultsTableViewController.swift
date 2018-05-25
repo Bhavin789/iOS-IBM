@@ -14,8 +14,6 @@ class ToneAnalyzerResultsTableViewController: UITableViewController {
     private let cellId = "cellId"
     
     var tones: [ToneScore]!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()

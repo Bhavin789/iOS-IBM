@@ -12,6 +12,18 @@ class DashboardViewController: UIViewController {
     
     var myView: UIView!
     
+    let closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.black
+        button.setTitle("CLOSE", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        return button
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "DASHBOARD"
@@ -235,6 +247,7 @@ class DashboardViewController: UIViewController {
         
         scrollView.addSubview(myView)
         
+        myView.addSubview(closeButton)
         myView.addSubview(nameLabel)
         //myView.addSubview(nameSeparator)
         myView.addSubview(toneLabel)
@@ -257,12 +270,20 @@ class DashboardViewController: UIViewController {
         myView.addSubview(positiveLabel)
         myView.addSubview(negativeLabel)
         
+        closeButton.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        closeButton.topAnchor.constraint(equalTo: myView.topAnchor, constant: 8).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        
         nameLabel.topAnchor.constraint(equalTo: myView.topAnchor, constant: 20).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: 8).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        
         /*
+         
+         
         nameSeparator.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0).isActive = true
         nameSeparator.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 30).isActive = true
         nameSeparator.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -30).isActive = true
@@ -386,6 +407,10 @@ class DashboardViewController: UIViewController {
         
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func handleClose(){
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

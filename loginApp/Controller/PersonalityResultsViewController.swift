@@ -15,6 +15,21 @@ class PersonalityResultsViewController: UIViewController {
     var curiosityPercentile: Double!
     var oppenness_to_changePercentile: Double!
     
+    var textField: UITextField!
+    var alert: UIAlertController!
+    
+    let closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.black
+        button.setTitle("CLOSE", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        return button
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "PERSONALITY"
@@ -120,7 +135,8 @@ class PersonalityResultsViewController: UIViewController {
         view.addSubview(valuesLabel)
         view.addSubview(valuesSeparator)
         view.addSubview(valuesPerLabel)
-        view.addSubview(okButton)
+        //view.addSubview(okButton)
+        view.addSubview(closeButton)
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -169,10 +185,10 @@ class PersonalityResultsViewController: UIViewController {
         valuesPerLabel.topAnchor.constraint(equalTo: valuesSeparator.bottomAnchor, constant: 8).isActive = true
         valuesPerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        okButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        okButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
-        okButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 8).isActive = true
-        okButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        closeButton.topAnchor.constraint(equalTo: myView.topAnchor, constant: 8).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
         namePerLabel.text = "Emotional = \(emotionalPercentile!)"
         needsPerLabel.text = "Curiosity = \(curiosityPercentile!)"
@@ -183,9 +199,43 @@ class PersonalityResultsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @objc func handleDismiss(){
+    @objc func handleClose(){
         //self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        showAlert("Any Feedback for the response")
+        
+    }
+    
+    func textFieldHandler(textField: UITextField!) -> Void{
+        if (textField) != nil {
+            textField.placeholder = "Enter feedback here"
+        }
+    }
+    
+    func showAlert(_ msg: String){
+        alert = UIAlertController(title: "Personality", message: msg, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: textFieldHandler)
+        alert.addAction(UIAlertAction(title: "SUBMIT", style: .default, handler: handleFeedback))
+        alert.addAction(UIAlertAction(title: "NO FEEDBACK", style: .default, handler: { (action) in
+            
+            /*
+            let date = NSDate()
+            var dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            var dateString = dateFormatter.string(from: date as Date)
+            */
+            
+            Log.saveObject(title: "Personality Insights", feedback: "", keywords: "emotional curiosity change", time: <#T##Date#>)
+            
+            
+            
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func handleFeedback(action: UIAlertAction){
+        Log.saveObject(title: "Personality Insights", feedback: alert.textFields![0].text, keywords: "emotional curiosity change", time: <#T##Date#>)
     }
 
     override func didReceiveMemoryWarning() {

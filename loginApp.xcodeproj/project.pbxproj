@@ -43,6 +43,7 @@
 		F18E0A6020B2066B003787E2 /* ToneAnalyzerV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4720B205F6003787E2 /* ToneAnalyzerV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18E0A6120B2066B003787E2 /* VisualRecognitionV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4620B205F6003787E2 /* VisualRecognitionV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1A1400820B7EB3B0028A3D0 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */; };
+		F1A1400A20B884300028A3D0 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400920B8842F0028A3D0 /* Log.swift */; };
 		F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE71FE6599F000B4487 /* AppDelegate.swift */; };
 		F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE91FE6599F000B4487 /* ViewController.swift */; };
 		F1C17FED1FE6599F000B4487 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C17FEB1FE6599F000B4487 /* Main.storyboard */; };
@@ -134,6 +135,7 @@
 		F18E0A4720B205F6003787E2 /* ToneAnalyzerV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToneAnalyzerV3.framework; path = Carthage/Build/iOS/ToneAnalyzerV3.framework; sourceTree = SOURCE_ROOT; };
 		F18E0A4820B205F6003787E2 /* NaturalLanguageUnderstandingV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguageUnderstandingV1.framework; path = Carthage/Build/iOS/NaturalLanguageUnderstandingV1.framework; sourceTree = SOURCE_ROOT; };
 		F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		F1A1400920B8842F0028A3D0 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F1C17FE41FE6599F000B4487 /* loginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C17FE71FE6599F000B4487 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C17FE91FE6599F000B4487 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			children = (
 				F1C180211FE6813F000B4487 /* File.swift */,
 				F12AA81020B59CC80008CA69 /* AssistantUser.swift */,
+				F1A1400920B8842F0028A3D0 /* Log.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */,
 				F1428CA820B749A5002AC68A /* TranslatorResultsViewController.swift in Sources */,
 				F12AA80F20B595E60008CA69 /* AssistantViewController.swift in Sources */,
+				F1A1400A20B884300028A3D0 /* Log.swift in Sources */,
 				F12AA81120B59CC80008CA69 /* AssistantUser.swift in Sources */,
 				F1C17FF01FE6599F000B4487 /* loginApp.xcdatamodeld in Sources */,
 				F173011F20B435C2007EBCF1 /* PersonalityResultsViewController.swift in Sources */,

@@ -12,6 +12,8 @@ class NLPResultsViewController: UIViewController {
     
     var emotion: String!
     
+    var alert: UIAlertController!
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "YOUR TEXT HAS SENTIMENT"
@@ -54,6 +56,31 @@ class NLPResultsViewController: UIViewController {
         
         emotionLabel.text = emotion
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldHandler(textField: UITextField!) -> Void{
+        if (textField) != nil {
+            textField.placeholder = "Enter feedback here"
+        }
+    }
+    
+    func showAlert(_ msg: String){
+        alert = UIAlertController(title: "Language Understanding", message: msg, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: textFieldHandler)
+        alert.addAction(UIAlertAction(title: "SUBMIT", style: .default, handler: handleFeedback))
+        alert.addAction(UIAlertAction(title: "NO FEEDBACK", style: .default, handler: { (action) in
+            print(self.alert.textFields![0].text)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func handleFeedback(action: UIAlertAction){
+        print("f")
+    }
+    
+    @objc func handleCancel(action: UIAlertAction){
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

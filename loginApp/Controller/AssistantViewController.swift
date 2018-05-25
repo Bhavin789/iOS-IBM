@@ -215,13 +215,7 @@ extension AssistantViewController {
     {
         let message = messages[indexPath.item]
         let isOutgoing = (message.senderId == senderId)
-        if (isOutgoing){
-            let totalMessagesSent = UserDefaults.standard.integer(forKey: "totalMessagesSent")
-            UserDefaults.standard.set(totalMessagesSent + 1, forKey: "totalMessagesSent")
-        }else{
-            let totalMessagesReceived = UserDefaults.standard.integer(forKey: "totalMessagesRecieved")
-            UserDefaults.standard.set(totalMessagesReceived + 1, forKey: "totalMessagesRecieved")
-        }
+        
         let bubble = (isOutgoing) ? outgoingBubble : incomingBubble
         return bubble
     }
@@ -247,6 +241,13 @@ extension AssistantViewController {
         let jsqCell = cell as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         let isOutgoing = (message.senderId == senderId)
+        if (isOutgoing){
+            let totalMessagesSent = UserDefaults.standard.integer(forKey: "totalMessagesSent")
+            UserDefaults.standard.set(totalMessagesSent + 1, forKey: "totalMessagesSent")
+        }else{
+            let totalMessagesReceived = UserDefaults.standard.integer(forKey: "totalMessagesRecieved")
+            UserDefaults.standard.set(totalMessagesReceived + 1, forKey: "totalMessagesRecieved")
+        }
         jsqCell.textView.textColor = (isOutgoing) ? .white : .black
         return jsqCell
     }

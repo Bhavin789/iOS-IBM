@@ -21,6 +21,9 @@ class MenuViewController: UITableViewController {
         items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant", "Language Translator"]
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "DASHBOARD", style: .plain, target: self, action: #selector(handleDashboard))
+        self.navigationItem.leftBarButtonItem?.tintColor = .black
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -79,6 +82,11 @@ class MenuViewController: UITableViewController {
             viewController.heading = "Language Translator"
             self.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+    
+    @objc func handleDashboard(){
+        let viewController = DashboardViewController()
+        self.present(viewController, animated: true, completion: nil)
     }
 
     /*
