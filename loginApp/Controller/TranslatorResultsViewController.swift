@@ -13,7 +13,7 @@ class TranslatorResultsViewController: UIViewController {
     var text: String!
     
     let nameLabel: UILabel = {
-        let label = UILabel()
+        var label = UILabel()
         label.text = "YOUR TEXT HAS SENTIMENT"
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 18)

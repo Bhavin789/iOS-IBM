@@ -42,6 +42,7 @@
 		F18E0A5F20B2066B003787E2 /* TextToSpeechV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4420B205F6003787E2 /* TextToSpeechV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18E0A6020B2066B003787E2 /* ToneAnalyzerV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4720B205F6003787E2 /* ToneAnalyzerV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18E0A6120B2066B003787E2 /* VisualRecognitionV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F18E0A4620B205F6003787E2 /* VisualRecognitionV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1A1400820B7EB3B0028A3D0 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */; };
 		F1C17FE81FE6599F000B4487 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE71FE6599F000B4487 /* AppDelegate.swift */; };
 		F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C17FE91FE6599F000B4487 /* ViewController.swift */; };
 		F1C17FED1FE6599F000B4487 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C17FEB1FE6599F000B4487 /* Main.storyboard */; };
@@ -132,6 +133,7 @@
 		F18E0A4620B205F6003787E2 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = SOURCE_ROOT; };
 		F18E0A4720B205F6003787E2 /* ToneAnalyzerV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToneAnalyzerV3.framework; path = Carthage/Build/iOS/ToneAnalyzerV3.framework; sourceTree = SOURCE_ROOT; };
 		F18E0A4820B205F6003787E2 /* NaturalLanguageUnderstandingV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguageUnderstandingV1.framework; path = Carthage/Build/iOS/NaturalLanguageUnderstandingV1.framework; sourceTree = SOURCE_ROOT; };
+		F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		F1C17FE41FE6599F000B4487 /* loginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C17FE71FE6599F000B4487 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C17FE91FE6599F000B4487 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				F12AA80E20B595E60008CA69 /* AssistantViewController.swift */,
 				F1428CA520B746F2002AC68A /* TranslatorInputViewController.swift */,
 				F1428CA720B749A5002AC68A /* TranslatorResultsViewController.swift */,
+				F1A1400720B7EB3B0028A3D0 /* DashboardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F12AA80720B565090008CA69 /* NLPResultsViewController.swift in Sources */,
+				F1A1400820B7EB3B0028A3D0 /* DashboardViewController.swift in Sources */,
 				F1C17FEA1FE6599F000B4487 /* ViewController.swift in Sources */,
 				F1C1801A1FE66194000B4487 /* test.m in Sources */,
 				F12AA80B20B5870E0008CA69 /* ToneAnalyzerResultsTableViewController.swift in Sources */,
