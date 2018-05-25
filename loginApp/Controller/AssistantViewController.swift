@@ -215,6 +215,13 @@ extension AssistantViewController {
     {
         let message = messages[indexPath.item]
         let isOutgoing = (message.senderId == senderId)
+        if (isOutgoing){
+            let totalMessagesSent = UserDefaults.standard.integer(forKey: "totalMessagesSent")
+            UserDefaults.standard.set(totalMessagesSent + 1, forKey: "totalMessagesSent")
+        }else{
+            let totalMessagesReceived = UserDefaults.standard.integer(forKey: "totalMessagesRecieved")
+            UserDefaults.standard.set(totalMessagesReceived + 1, forKey: "totalMessagesRecieved")
+        }
         let bubble = (isOutgoing) ? outgoingBubble : incomingBubble
         return bubble
     }

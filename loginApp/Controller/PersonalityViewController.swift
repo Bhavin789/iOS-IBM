@@ -91,6 +91,14 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
             let failure = { (error: Error) in print(error) }
             personalityInsights.profile(text: textView.text, failure: failure) { profile in
                 print(profile)
+                
+                let emotionPercentile = UserDefaults.standard.double(forKey: "emotionPercentile")
+                let curiosityPercentile = UserDefaults.standard.double(forKey: "curiosityPercentile")
+                let changePercentile = UserDefaults.standard.double(forKey: "changePercentile")
+                
+                UserDefaults.standard.set((profile.personality[4].percentile + emotionPercentile)/2, forKey: "emotionPercentile")
+                UserDefaults.standard.set((profile.needs[2].percentile + curiosityPercentile)/2, forKey: "curiosityPercentile")
+                UserDefaults.standard.set((profile.values[1].percentile + changePercentile)/2, forKey: "changePercentile")
                 let viewController = PersonalityResultsViewController()
                 viewController.emotionalPercentile = profile.personality[4].percentile
                 viewController.curiosityPercentile = profile.needs[2].percentile
@@ -98,12 +106,7 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }else{
-            print("NO")
-            let viewController = PersonalityResultsViewController()
-            viewController.emotionalPercentile = 1.0
-            viewController.curiosityPercentile = 2.0
-            viewController.oppenness_to_changePercentile = 3.0
-            self.navigationController?.pushViewController(viewController, animated: true)
+            showAlertMessage("Enter Atleast 100 words to analyze")
         }
         }else if (heading == "Language Understanding"){
             let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: Credentials.NLPUsername, password: Credentials.NLPPassword, version: Credentials.version)
@@ -120,6 +123,16 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
                     if let sentimentLabel = results.sentiment?.document?.label{
                         print("++++++++++++")
                         print(sentimentLabel)
+                        
+                        let negativeEmotionsAnalyzed = UserDefaults.standard.integer(forKey: "negativeEmotionsAnalyzed")
+                        let positiveEmotionAnalyzed = UserDefaults.standard.integer(forKey: "positiveEmotionAnalyzed")
+                        
+                        
+                        if (sentimentLabel == "positive"){
+                            UserDefaults.standard.set(positiveEmotionAnalyzed + 1, forKey: "positiveEmotionAnalyzed")
+                        }else{
+                            UserDefaults.standard.set(negativeEmotionsAnalyzed + 1, forKey: "negativeEmotionsAnalyzed")
+                        }
                         viewController.emotion = sentimentLabel
                     }else{
                         viewController.emotion = "SAD"
@@ -138,6 +151,9 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
                 
                 print(tones)
                 
+                let tonesAnalyzed = UserDefaults.standard.integer(forKey: "totalTonesAnalyzed")
+                UserDefaults.standard.set(tonesAnalyzed + tones.documentTone.tones!.count, forKey: "totalTonesAnalyzed")
+                
                 DispatchQueue.main.async {
                     let viewController = ToneAnalyzerResultsTableViewController()
                     viewController.tones = tones.documentTone.tones!
@@ -149,6 +165,12 @@ class PersonalityViewController: UIViewController, UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func showAlertMessage(_ string:String){
+        let alert = UIAlertController(title: "OpenTrip", message: string, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     

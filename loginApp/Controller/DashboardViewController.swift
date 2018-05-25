@@ -16,7 +16,7 @@ class DashboardViewController: UIViewController {
         let label = UILabel()
         label.text = "DASHBOARD"
         // label.backgroundColor = UIColor.green
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 35)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.black
@@ -129,7 +129,7 @@ class DashboardViewController: UIViewController {
     
     let positiveLabel: UILabel = {
         let label = UILabel()
-        label.text = "NEGATIVE EMOTIONS ANALYZED"
+        label.text = "POSITIVE EMOTIONS ANALYZED"
         // label.backgroundColor = UIColor.green
         label.font = UIFont(name: "HelveticaNeue", size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -236,7 +236,7 @@ class DashboardViewController: UIViewController {
         scrollView.addSubview(myView)
         
         myView.addSubview(nameLabel)
-        myView.addSubview(nameSeparator)
+        //myView.addSubview(nameSeparator)
         myView.addSubview(toneLabel)
         myView.addSubview(toneSeparator)
         myView.addSubview(totalToneLabel)
@@ -262,11 +262,12 @@ class DashboardViewController: UIViewController {
         nameLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: 8).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        /*
         nameSeparator.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0).isActive = true
         nameSeparator.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 30).isActive = true
         nameSeparator.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -30).isActive = true
         nameSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
+        */
         toneLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         toneLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         toneLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
@@ -312,7 +313,7 @@ class DashboardViewController: UIViewController {
         languageLabel.topAnchor.constraint(equalTo: changeToneLabel.bottomAnchor, constant: 8).isActive = true
         languageLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        languageSeparator.topAnchor.constraint(equalTo: personalityLabel.bottomAnchor, constant: 0).isActive = true
+        languageSeparator.topAnchor.constraint(equalTo: languageLabel.bottomAnchor, constant: 0).isActive = true
         languageSeparator.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 0).isActive = true
         languageSeparator.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: 0).isActive = true
         languageSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -324,7 +325,7 @@ class DashboardViewController: UIViewController {
         
         assistantLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         assistantLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
-        assistantLabel.topAnchor.constraint(equalTo: positiveLabel.bottomAnchor, constant: 8).isActive = true
+        assistantLabel.topAnchor.constraint(equalTo: totalLanguagesLabel.bottomAnchor, constant: 8).isActive = true
         assistantLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         assistantSeparator.topAnchor.constraint(equalTo: assistantLabel.bottomAnchor, constant: 0).isActive = true
@@ -335,12 +336,12 @@ class DashboardViewController: UIViewController {
         sentLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         sentLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         sentLabel.topAnchor.constraint(equalTo: assistantSeparator.bottomAnchor, constant: 8).isActive = true
-        sentLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        sentLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         recievedLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         recievedLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         recievedLabel.topAnchor.constraint(equalTo: sentLabel.bottomAnchor, constant: 8).isActive = true
-        recievedLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        recievedLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         nlpLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
         nlpLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
@@ -362,6 +363,26 @@ class DashboardViewController: UIViewController {
         positiveLabel.topAnchor.constraint(equalTo: negativeLabel.bottomAnchor, constant: 8).isActive = true
         positiveLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
+        let tonesAnalyzed = UserDefaults.standard.integer(forKey: "totalTonesAnalyzed")
+        let totalTextTranslated = UserDefaults.standard.integer(forKey: "totalTextTranslated")
+        let totalMessagesSent = UserDefaults.standard.integer(forKey: "totalMessagesSent")
+        let totalMessagesReceived = UserDefaults.standard.integer(forKey: "totalMessagesRecieved")
+        let negativeEmotionsAnalyzed = UserDefaults.standard.integer(forKey: "negativeEmotionsAnalyzed")
+        let positiveEmotionAnalyzed = UserDefaults.standard.integer(forKey: "positiveEmotionAnalyzed")
+        let emotionPercentile = UserDefaults.standard.double(forKey: "emotionPercentile")
+        let curiosityPercentile = UserDefaults.standard.double(forKey: "curiosityPercentile")
+        let changePercentile = UserDefaults.standard.double(forKey: "changePercentile")
+        
+        
+        totalToneLabel.text = "TOTAL TONES ANALYZED : \(tonesAnalyzed)"
+        emotionalLabel.text = "AVERAGE EMOTIONAL PERCENTILE : \(emotionPercentile)"
+        curiosityLabel.text = "AVERAGE CURIOSITY PERCENTILE : \(curiosityPercentile)"
+        changeToneLabel.text = "AVERAGE CHANGE PERCENTILE : \(changePercentile)"
+        totalLanguagesLabel.text = "TOTAL TEXT TRANSLATED : \(totalTextTranslated)"
+        sentLabel.text = "TOTAL MESSAGES SENT : \(totalMessagesSent)"
+        recievedLabel.text = "TOTAL MESSAGES RECIEVED : \(totalMessagesReceived)"
+        negativeLabel.text = "NEGATIVE EMOTIONS ANALYZED : \(negativeEmotionsAnalyzed)"
+        positiveLabel.text = "POSITIVE EMOTIONS ANALYZED : \(positiveEmotionAnalyzed)"
         
 
         // Do any additional setup after loading the view.

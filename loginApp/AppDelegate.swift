@@ -25,8 +25,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        checkIfFirstLaunch();
+        
         // Override point for customization after application launch.
         return true
+    }
+    
+    func checkIfFirstLaunch() {
+        if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+            print("App has launched before")
+        } else {
+            print("This is the first launch ever!")
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            UserDefaults.standard.set(0, forKey: "totalTonesAnalyzed")
+            UserDefaults.standard.set(0, forKey: "totalTextTranslated")
+            UserDefaults.standard.set(0, forKey: "totalMessagesSent")
+            UserDefaults.standard.set(0, forKey: "totalMessagesRecieved")
+            UserDefaults.standard.set(0, forKey: "negativeEmotionsAnalyzed")
+            UserDefaults.standard.set(0, forKey: "positiveEmotionAnalyzed")
+            UserDefaults.standard.set(0, forKey: "emotionPercentile")
+            UserDefaults.standard.set(0, forKey: "curiosityPercentile")
+            UserDefaults.standard.set(0, forKey: "changePercentile")
+            UserDefaults.standard.synchronize()
+        }
     }
 
     /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

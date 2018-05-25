@@ -126,6 +126,9 @@ class TranslatorInputViewController: UIViewController, UITextFieldDelegate, UIPi
                 translation in
                 let text = translation.translations[0].translationOutput
                 
+                let totalTextTranslated = UserDefaults.standard.integer(forKey: "totalTextTranslated")
+                UserDefaults.standard.set(totalTextTranslated + 1, forKey: "totalTextTranslated")
+                
                 DispatchQueue.main.async {
                     var viewController = TranslatorResultsViewController()
                     viewController.text = text
