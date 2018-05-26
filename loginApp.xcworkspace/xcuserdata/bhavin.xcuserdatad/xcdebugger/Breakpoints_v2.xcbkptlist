@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "loginApp/Controller/ViewController.swift"
-            timestampString = "548967281.7982171"
+            timestampString = "549015360.855513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "handleFacebook()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "loginApp/Controller/TranslatorInputViewController.swift"
-            timestampString = "548967281.832508"
+            timestampString = "549013120.5168591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "193"

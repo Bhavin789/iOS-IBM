@@ -74,7 +74,7 @@ class TranslatorResultsViewController: UIViewController {
              var dateString = dateFormatter.string(from: date as Date)
              */
             let date = Date()
-            Log.saveObject(title: "Language Translator", feedback: "", keywords: "\(self.language)", time: date)
+            Log.saveObject(title: "Language Translator", feedback: "", keywords: "\(self.language!)", time: date)
             
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
@@ -88,7 +88,7 @@ class TranslatorResultsViewController: UIViewController {
     @objc func handleFeedback(action: UIAlertAction){
         
         let date = Date()
-        Log.saveObject(title: "Language Translator", feedback: alert.textFields![0].text!, keywords: "\(language)", time: date)
+        Log.saveObject(title: "Language Translator", feedback: alert.textFields![0].text!, keywords: "\(language!)", time: date)
         
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)

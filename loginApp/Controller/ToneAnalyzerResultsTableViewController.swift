@@ -78,9 +78,7 @@ class ToneAnalyzerResultsTableViewController: UITableViewController {
             
             /*
              let date = NSDate()
-             var dateFormatter = DateFormatter()
-             dateFormatter.dateFormat = "dd/MM/yyyy"
-             var dateString = dateFormatter.string(from: date as Date)
+             
              */
             let date = Date()
             Log.saveObject(title: "Tone Analyzer", feedback: "", keywords: "\(self.tones[0].toneName)", time: date)

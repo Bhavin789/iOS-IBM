@@ -31,4 +31,17 @@ extension Log{
             return false
         }
     }
+    
+    class func getLogs() -> [Log]?{
+        let context = getContext()
+        var logs: [Log]? = nil
+        do {
+            logs = try context.fetch(Log.fetchRequest())
+        } catch  {
+            print("Error in fetching")
+            
+        }
+        
+        return logs
+    }
 }

@@ -7,22 +7,33 @@
 //
 
 import UIKit
+import GoogleSignIn
+import Google
 
 class MenuViewController: UITableViewController {
+    
+    var user: User!
     
     var items = [String]()
     let cellId = "Workout"
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkCurrentUser()
 
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationItem.title = "SERVICES"
         
-        items = ["Discovery", "Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant", "Language Translator"]
+        items = ["Natural Language Understanding","Personality Insights","Tone Analyzer","Watson Assistant", "Language Translator"]
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "DASHBOARD", style: .plain, target: self, action: #selector(handleDashboard))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dashboard", style: .plain, target: self, action: #selector(handleDashboard))
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logs", style: .plain, target: self, action: #selector(handleLog))
+        
         self.navigationItem.leftBarButtonItem?.tintColor = .black
+        
+        self.tableView.sectionHeaderHeight = 50
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -87,6 +98,23 @@ class MenuViewController: UITableViewController {
     @objc func handleDashboard(){
         let viewController = DashboardViewController()
         self.present(viewController, animated: true, completion: nil)
+    }
+    
+    @objc func handleLog(){
+        let viewController = LogTableViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "HI, \(user.first_name!). Please select a service"
+    }
+    
+    @objc func checkCurrentUser(){
+        if GIDSignIn.sharedInstance().currentUser != nil{
+            print("OK TO GO")
+        }else{
+            print("LOGIN FIRST")
+        }
     }
 
     /*

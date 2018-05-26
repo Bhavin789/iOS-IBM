@@ -14,9 +14,56 @@ import Google
 import AssistantV1
 
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
-
-    @IBOutlet weak var facebookButton: UIButton!
+    
     var appUser : User?
+    
+    lazy var  logoImage: UIImageView = {
+        
+        let profileImage = UIImageView()
+        
+        profileImage.image = UIImage(named: "watson_avatar")
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.contentMode = .scaleAspectFill
+        return profileImage
+        
+    }()
+    
+    let googleButton: UIButton = {
+        let button = UIButton(type: .system)
+        //button.backgroundColor = UIColor(red: 228/255, green: 102/255, blue: 102/255, alpha: 1)
+        button.backgroundColor = UIColor(red: 219/255, green: 50/255, blue: 54/255, alpha: 1)
+        button.setTitle("Google", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
+        return button
+    }()
+    
+    let facebookButton: UIButton = {
+        let button = UIButton(type: .system)
+        //button.backgroundColor = UIColor(red: 228/255, green: 102/255, blue: 102/255, alpha: 1)
+        button.backgroundColor = UIColor(red: 59/255, green: 89/255, blue: 152/255, alpha: 1)
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(handleFacebook), for: .touchUpInside)
+        return button
+    }()
+    
+    let watsonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Watson"
+        // label.backgroundColor = UIColor.green
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 40)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.black
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +80,52 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         
-        let googleButton = GIDSignInButton()
-        googleButton.center = view.center
+        //let googleButton = GIDSignInButton()
         view.addSubview(googleButton)
+        view.addSubview(facebookButton)
+        view.addSubview(watsonLabel)
+        self.view.addSubview(logoImage)
         
-        facebookButton.addTarget(self, action: #selector(handleFacebook), for: .touchUpInside)
+        googleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        googleButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
+        googleButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        googleButton.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 8).isActive = true
+        
+        facebookButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        facebookButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
+        facebookButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        facebookButton.topAnchor.constraint(equalTo: watsonLabel.bottomAnchor, constant: 20).isActive = true
+        
+        watsonLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        watsonLabel.widthAnchor.constraint(equalToConstant: view.frame.width - 16).isActive = true
+        watsonLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        watsonLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        logoImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        logoImage.heightAnchor.constraint(equalToConstant: 160).isActive = true
+        logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        checkCurrentUser()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func handleGoogleSignIn(){
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @objc func checkCurrentUser(){
+        if GIDSignIn.sharedInstance().hasAuthInKeychain(){
+            print("OK TO GO")
+        }else{
+            print("LOGIN FIRST")
+        }
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -65,6 +147,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             
             DispatchQueue.main.async {
                 let viewController = MenuViewController()
+                viewController.user = self.appUser!
                 let navigationController = UINavigationController(rootViewController: viewController)
                 self.present(navigationController, animated: true, completion: nil)
             }
@@ -92,12 +175,19 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         print("reached")
                         
                         DispatchQueue.main.async {
+                            let viewController = MenuViewController()
+                            viewController.user = self.appUser!
+                            let navigationController = UINavigationController(rootViewController: viewController)
+                            self.present(navigationController, animated: true, completion: nil)
+                        }
+                        
+                        /*DispatchQueue.main.async {
                             let viewController = self.storyboard?.instantiateViewController(withIdentifier: "vc") as? DetailViewController
                             //viewController.user = self.user
                             
                             viewController?.setUpUser(mail: self.appUser?.mail, first_name: self.appUser?.first_name, last_name: self.appUser?.last_name, id: self.appUser?.id)
                             self.present(viewController!, animated: true, completion: nil)
-                        }
+                        }*/
                         
                     }
                     

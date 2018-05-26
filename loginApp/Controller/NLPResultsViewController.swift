@@ -88,7 +88,7 @@ class NLPResultsViewController: UIViewController {
              var dateString = dateFormatter.string(from: date as Date)
              */
             let date = Date()
-            Log.saveObject(title: "Language Understanding", feedback: "", keywords: "\(self.emotion)", time: date)
+            Log.saveObject(title: "Language Understanding", feedback: "", keywords: "\(self.emotion!)", time: date)
             
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
@@ -102,7 +102,7 @@ class NLPResultsViewController: UIViewController {
     @objc func handleFeedback(action: UIAlertAction){
         
         let date = Date()
-        Log.saveObject(title: "Language Understanding", feedback: alert.textFields![0].text!, keywords: "\(emotion)", time: date)
+        Log.saveObject(title: "Language Understanding", feedback: alert.textFields![0].text!, keywords: "\(emotion!)", time: date)
         
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)

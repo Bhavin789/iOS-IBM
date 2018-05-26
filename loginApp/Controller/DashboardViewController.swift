@@ -15,11 +15,12 @@ class DashboardViewController: UIViewController {
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.black
-        button.setTitle("CLOSE", for: .normal)
+        button.setTitle("OK", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.layer.shadowRadius = 5
         button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
         return button
     }()
@@ -304,7 +305,7 @@ class DashboardViewController: UIViewController {
         totalToneLabel.topAnchor.constraint(equalTo: toneSeparator.bottomAnchor, constant: 8).isActive = true
         totalToneLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        personalityLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        personalityLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 12).isActive = true
         personalityLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         personalityLabel.topAnchor.constraint(equalTo: totalToneLabel.bottomAnchor, constant: 8).isActive = true
         personalityLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -329,7 +330,7 @@ class DashboardViewController: UIViewController {
         changeToneLabel.topAnchor.constraint(equalTo: curiosityLabel.bottomAnchor, constant: 8).isActive = true
         changeToneLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        languageLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        languageLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 12).isActive = true
         languageLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         languageLabel.topAnchor.constraint(equalTo: changeToneLabel.bottomAnchor, constant: 8).isActive = true
         languageLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -344,7 +345,7 @@ class DashboardViewController: UIViewController {
         totalLanguagesLabel.topAnchor.constraint(equalTo: languageSeparator.bottomAnchor, constant: 8).isActive = true
         totalLanguagesLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        assistantLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        assistantLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 12).isActive = true
         assistantLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         assistantLabel.topAnchor.constraint(equalTo: totalLanguagesLabel.bottomAnchor, constant: 8).isActive = true
         assistantLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -364,7 +365,7 @@ class DashboardViewController: UIViewController {
         recievedLabel.topAnchor.constraint(equalTo: sentLabel.bottomAnchor, constant: 8).isActive = true
         recievedLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        nlpLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 8).isActive = true
+        nlpLabel.leftAnchor.constraint(equalTo: myView.leftAnchor, constant: 12).isActive = true
         nlpLabel.rightAnchor.constraint(equalTo: myView.rightAnchor, constant: -8).isActive = true
         nlpLabel.topAnchor.constraint(equalTo: recievedLabel.bottomAnchor, constant: 8).isActive = true
         nlpLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
