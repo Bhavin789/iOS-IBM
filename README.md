@@ -1,2 +1,2 @@
 # iOS-IBM
-This repo includes app to that works with different IBM Watson services related to AI. 
+This repo includes app to that works with different IBM Watson services related to AI. It includes a demo of the services like Watson Personal Insights, Watson Assistant using the worspace of a Car Assistant, Watson Tone Analyzer and Watson Langugae Translator.After the results are displayed, a customer feedback is asked and every API call is stored as log using Core Data. A dashboard is created to keep a record of the interactions between the user and the services.
